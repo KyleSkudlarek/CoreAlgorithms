@@ -61,7 +61,7 @@ def _partition(arr, start, end):
                 break
 
         # Done sorting this partition, return index of partition
-        # print(f"Finished swapping all out-of-order values, putting pivot value ({arr[start]}) into correct position at index ({high}),"
+        # print(f"Findished swapping all out-of-order values, putting pivot value ({arr[start]}) into correct position at index ({high}),"
         #       f" and returning index...")
 
         arr[start], arr[high] = arr[high], arr[start]
