@@ -36,7 +36,7 @@ def _partition(arr, start, end):
 
         # Find out-of-order high value to the right of pivot (if other value is less than)
         while low <= high and arr[high] >= pivot:
-            logging.deb  ug(f"Value ({arr[high]}) at index {high} is in order, moving high to left (-1)...")
+            logging.debug(f"Value ({arr[high]}) at index {high} is in order, moving high to left (-1)...")
             high -= 1
 
         # Find out-of-order low value to the left of pivot (if other value is greater than)
