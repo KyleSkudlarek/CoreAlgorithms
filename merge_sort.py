@@ -4,6 +4,50 @@ import logging
 import random
 
 
+def merge_sort2(values):
+    logging.debug(f"Values: {values}")
+
+    if len(values) > 1:
+
+        m = len(values) // 2
+
+        logging.debug(f"m: {m}")
+
+        left = values[:m]
+        right = values[m:]
+
+        logging.debug(f"left: {left}")
+        logging.debug(f"right: {right}")
+
+
+        left = merge_sort2(left)
+        right = merge_sort2(right)
+
+        logging.debug(f"left after recurse: {left}")
+        logging.debug(f"right after recourse: {right}")
+
+        values = []
+
+        while len(left) > 0 and len(right) > 0:
+            if left[0] < right[0]:
+                values.append(left[0])
+                logging.debug(f"Values: {values}")
+                left.pop(0)
+            else:
+                values.append(right[0])
+                logging.debug(f"Values: {values}")
+                right.pop(0)
+
+        for i in left:
+            values.append(i)
+            logging.debug(f"Values: {values}")
+        for i in right:
+            values.append(i)
+            logging.debug(f"Values: {values}")
+
+    logging.debug(f"len values < 1, returning values: {values}")
+    return values
+
 def merge_sort(arr):
 
     if len(arr) > 1:
@@ -65,16 +109,16 @@ if __name__ == "__main__":
         unsorted_array.sort()
 
         # Now use our merge sort implementation
-        merge_sort(unsorted_array_copy)
+        sorted_array_copy = merge_sort2(unsorted_array_copy)
 
         logging.debug(f"Default sorted array {i}: {unsorted_array}")
-        logging.debug(f"Merge sorted array {i}: {unsorted_array_copy}")
+        logging.debug(f"Merge2 sorted array {i}: {sorted_array_copy}")
 
         # Compare to see if our quick sort implementation worked
-        if unsorted_array == unsorted_array_copy:
-            logging.info(f"Array {i} sorted correctly! {unsorted_array_copy}")
+        if unsorted_array == sorted_array_copy:
+            logging.info(f"Array {i} sorted correctly! {sorted_array_copy}")
         else:
-            logging.error(f"ERROR: Array {i} NOT sorted correctly! {unsorted_array_copy}")
+            logging.error(f"ERROR: Array {i} NOT sorted correctly! {sorted_array_copy}")
             tests_passed = False
 
     logging.info(f"Result of all tests: {tests_passed}")
