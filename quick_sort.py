@@ -18,7 +18,7 @@ def quick_sort(arr, start, end):
 
 
 def _partition(arr, start, end):
-    logging.debug(f"Start, End ({start},{end}). Partitioning array: {arr}")
+    logging.debug(f"Start, End ({start},{end}). Partitioning array: {arr[start:end+1]}")
 
     # Pick a "pivot" value around which to swap other values in this partition. In this case we just pick first value
 
@@ -36,7 +36,7 @@ def _partition(arr, start, end):
 
         # Find out-of-order high value to the right of pivot (if other value is less than)
         while low <= high and arr[high] >= pivot:
-            logging.debug(f"Value ({arr[high]}) at index {high} is in order, moving high to left (-1)...")
+            logging.deb  ug(f"Value ({arr[high]}) at index {high} is in order, moving high to left (-1)...")
             high -= 1
 
         # Find out-of-order low value to the left of pivot (if other value is greater than)
@@ -46,16 +46,16 @@ def _partition(arr, start, end):
 
         # Found two values that are out-of-order, now swap them so that they are in order
         if low < high:
-            logging.debug(f"Found two out-of-order values to swap. Low value: {arr[low]} at index: {low}, with high value: {arr[high]} at index: {high}")
+            logging.debug(f"Swapping two out-of-order values. Low value: {arr[low]}, index [{low}]. High value: {arr[high]}, index [{high}]")
             arr[low], arr[high] = arr[high], arr[low]
 
         # We have swapped all out-of-order values, this arr is now partitioned into "correct" order (in terms of greater/less than the pivot)
         else:
-            logging.debug(f"Found all out-of-order values to swap. This arr is now partitioned correctly around pivot: {arr}")
+            logging.debug(f"Found all out-of-order values to swap.")
             break
 
     # Done sorting this partition, return index of partition
-    logging.debug(f"Finished partitioning values, swapping pivot value ({arr[start]}) into correct position at index ({high})")
+    logging.debug(f"Finished partitioning values, swapping pivot value: {arr[start]} into correct position at index [{high}]")
     arr[start], arr[high] = arr[high], arr[start]
 
     logging.debug(f"In order array for this partition: {arr}")
@@ -64,23 +64,11 @@ def _partition(arr, start, end):
     return high
 
 
-
-
-
-
-
 if __name__ == "__main__":
 
     # Default INFO. Set to DEBUG to see inner working on quick sort
     logging.basicConfig(level='DEBUG')
-
-    # # Hardcoded test
-    # arr = [10, 7, 8, 9, 1, 5]
-    # quick_sort(arr, 0, len(arr)-1)
-    #
-    # logging.info("Sorted array is:")
  
-
 
     # Automated tests
     num_tests = 1
